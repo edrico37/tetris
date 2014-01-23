@@ -1,0 +1,80 @@
+body {
+  margin: 0; }
+
+#matrix {
+  width: 400px;
+  height: 800px;
+  background-color: #CCCCCC;
+  border-color: #333333;
+  border-style: solid;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-top-width: 0; }
+  #matrix table {
+    border-collapse: collapse;
+    height: 100%;
+    width: 100%; }
+    #matrix table td {
+      height: 40px;
+      width: 40px;
+      box-sizing: border-box; }
+      #matrix table td.full {
+        background-color: black; }
+
+#tetromino {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  background-color: transparent;
+  height: 120px;
+  width: 120px; }
+  #tetromino.spin-1 {
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg); }
+  #tetromino.spin-2 {
+    transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg); }
+  #tetromino.spin-3 {
+    transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -webkit-transform: rotate(270deg); }
+  #tetromino.T {
+    background-image: url("images/t-tetromino.png"); }
+  #tetromino.S.spin-2 {
+    transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg); }
+  #tetromino.S.spin-3 {
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg); }
+  #tetromino.Z.spin-2 {
+    transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg); }
+  #tetromino.Z.spin-3 {
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg); }
+  #tetromino.O {
+    height: 80px;
+    width: 80px; }
+  #tetromino.I {
+    height: 160px;
+    width: 160px; }
+    #tetromino.I.spin-2 {
+      transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg); }
+    #tetromino.I.spin-3 {
+      transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -webkit-transform: rotate(90deg); }
+
+/* other crap */
+#controls {
+  clear: both; }

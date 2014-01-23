@@ -1,0 +1,107 @@
+// variables and mixins
+$box-width: 40px;
+@mixin sizeBoxes($num) {
+    height: $num*$box-width;
+    width: $num*$box-width;
+}
+@mixin spin($degrees) {
+    transform: rotate(#{$degrees}deg);
+    -ms-transform: rotate(#{$degrees}deg);
+    -webkit-transform: rotate(#{$degrees}deg);
+}
+@mixin binarySpin {
+    &.spin-2 {
+        @include spin(0);
+    }
+    &.spin-3 {
+        @include spin(90);
+    }
+}
+
+// body
+body {
+    margin: 0;
+}
+
+// matrix
+#matrix {
+    width: 10*$box-width;
+    height: 20*$box-width;
+    background-color: #CCCCCC;
+    border: {
+        color: #333333;
+        style: solid;
+        bottom: {
+            width: 1px;
+        }
+        left: {
+            width: 1px;
+        }
+        right: {
+            width: 1px;
+        }
+        top: {
+            width: 0;
+        }
+    }
+    table {
+        border-collapse: collapse;
+        height: 100%;
+        width: 100%;
+        td {
+            height: $box-width; 
+            width: $box-width; 
+            box-sizing: border-box;
+            &.full {
+                background-color: black;
+            }
+        }
+    }
+}
+
+#tetromino {
+    // general tetromino styles
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    background-color: transparent;
+    @include sizeBoxes(3);
+    &.spin-1 {
+        @include spin(90);
+    }
+    &.spin-2 {
+        @include spin(180);
+    }
+    &.spin-3 {
+        @include spin(270);
+    }
+    // shape-specific overrides
+    &.T {
+        background-image: url('images/t-tetromino.png');
+    }
+    &.S {
+        @include binarySpin;
+    }
+    &.Z {
+        @include binarySpin;
+    }
+    &.L {
+    }
+    &.J {
+    }
+    &.O {
+        @include sizeBoxes(2);
+    }
+    &.I {
+        @include sizeBoxes(4);
+        @include binarySpin;
+    }
+}
+
+
+
+/* other crap */
+#controls {
+    clear: both;
+}
