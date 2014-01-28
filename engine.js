@@ -262,12 +262,12 @@ window.tetris = {};
                     paddedTetrominoRowValue = leftShiftAmount > 0 ? tetrominoRowValue << leftShiftAmount : tetrominoRowValue >>> -leftShiftAmount, // the value for this row with padding added to match the matrix
                     matrixRowIndex = i + y + yShift; // the row index to check in the matrix
 
-                if (x + xShift + width > MATRIX.width && tetrominoRowValue % 2) {
+                if (x + xShift + width > MATRIX.width && tetrominoRowValue % Math.pow(2, x + xShift + width - MATRIX.width)) { // this will make sure we're looking deep enough into the tetromino grid
                     // we hit the right side of the matrix!
                     console.log('we hit the right side of the matrix!');
                     return false;
-                } else if (x + xShift < 0 && tetrominoGrid[i][0]) {
-                    // we hit the right side of the matrix!
+                } else if (x + xShift < 0 && tetrominoGrid[i][-1 * (1 + x + xShift)]) { // see above for formula explanation
+                    // we hit the left side of the matrix!
                     console.log('we hit the left side of the matrix!');
                     return false;
                 } else if (matrixRowIndex < MATRIX.grid.length) {
