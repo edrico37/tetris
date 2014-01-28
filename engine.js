@@ -230,57 +230,6 @@ window.tetris = {};
         }
     };
 
-    function Matrix(height, width) {
-        // properties
-        this.element = $('#matrix');
-        this.height = height;
-        this.width = width;
-        this.grid = [];
-
-        // functions
-        /*this.lockTetromino = function(tetromino) {
-            // can we do this more efficiently with bitwise operators?
-            for (var i = 0; i < tetromino.height; i++) {
-                for (k = 0; k < tetromino.width; k++) {
-                    var y = i + tetromino.y,
-                        x = k + tetromino.x;
-                    if (y < this.height && x < this.width) {
-                        var matrixCell = this.grid[y][x],
-                            tetrominoCell = tetromino.grid[i][k];
-                        this.grid[y][x] = matrixCell || tetrominoCell;
-                    }
-                }
-            }
-            // overwrite old tetromino
-            tetromino.destroy();
-            SCOPE.tetromino = new Tetromino('T');
-            SCOPE.tetromino.render();
-        };*/
-        
-        this.render = function() {
-            // local helper functions
-            function buildMatrixCell(matrixCell) {
-                return '<td' + (matrixCell ? ' class="full"' : '') + '></td>';
-            }
-            function buildMatrixRow(matrixRow) {
-                var matrixRowHtml = '<tr>';
-                for (var i = 0; i < matrixRow.length; i++) {
-                    matrixRowHtml += buildMatrixCell(matrixRow[i]);
-                }
-                matrixRowHtml += '</tr>';
-                return matrixRowHtml;
-            }
-
-            // create HTML and fill it
-            var matrixHtml = '<tbody>';
-            for (var i = 0; i < this.grid.length; i++) {
-                matrixHtml += buildMatrixRow(this.grid[i]);
-            }
-            matrixHtml += '</tbody>';
-            this.element.children('table').html(matrixHtml);
-        };
-    }
-
     function Tetromino(type) {
         // private properties
         var $elem,
@@ -337,6 +286,19 @@ window.tetris = {};
             // no collisions!
             return true;
         };
+        function lock() {
+            for (var i = 0; i < height; i++) {
+                for (k = 0; k < width; k++) {
+                    var mY = i + y, // y-coordinate in matrix
+                        mX = k + x; // x-coordinate in matrix
+                    if (mY < MATRIX.height && mX < MATRIX.width) {
+                        var matrixCell = MATRIX.grid[mY][mX],
+                            tetrominoCell = grid[i][k];
+                        MATRIX.grid[mY][mX] = matrixCell || tetrominoCell;
+                    }
+                }
+            }
+        };
 
         // public functions
         this.moveDown = function() {
@@ -347,9 +309,11 @@ window.tetris = {};
                     top: (40 * y) + 'px'
                 });
             } else {
-                // TODO: use pubsub
-                MATRIX.lockTetromino(this);
+                lock();
+                destroy();
+                // TODO: use pubsub for this part
                 MATRIX.render();
+                SCOPE.tetromino = new Tetromino('T');
             }
         };
 
@@ -390,7 +354,7 @@ window.tetris = {};
 
     // initialization bullshit
     function init() {
-        MATRIX.init($('#matrix'), 20, 10);
+        MATRIX.init($('#matrix'), 20, 10); // initialize matrix
         SCOPE.tetromino = new Tetromino('T'); // our current tetromino
         // controls
         $(document).keydown(function(event) {
