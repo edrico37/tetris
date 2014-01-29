@@ -34,14 +34,18 @@ body {
 
 // grid styles
 .grid {
+    border-collapse: collapse;
     width: inherit;
     height: inherit;
     .row {
         height: $cell-width;
     }
     .cell {
-        float: left;
         @include sizeCells(1);
+        box-sizing: border-box;
+        &.full {
+            border: solid 1px black;
+        }
     }
 }
 

@@ -2,14 +2,17 @@ body {
   margin: 0; }
 
 .grid {
+  border-collapse: collapse;
   width: inherit;
   height: inherit; }
   .grid .row {
     height: 40px; }
   .grid .cell {
-    float: left;
     height: 40px;
-    width: 40px; }
+    width: 40px;
+    box-sizing: border-box; }
+    .grid .cell.full {
+      border: solid 1px black; }
 
 #matrix {
   width: 400px;

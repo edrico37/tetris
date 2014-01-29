@@ -189,16 +189,16 @@ window.tetris = {};
 
     // private util functions
     function buildGrid(grid) {
-        var gridHtml = '<div class="grid">'
+        var gridHtml = '<table class="grid"><tbody>'
         for (var i = 0; i < grid.length; i++) {
-            gridHtml += '<div class="row">';
+            gridHtml += '<tr class="row">';
             var gridRow = grid[i];
             for (var k = 0; k < gridRow.length; k++) {
-                gridHtml += '<div class="cell' + (gridRow[k] ? ' full' : '') + '"></div>';
+                gridHtml += '<td class="cell' + (gridRow[k] ? ' full' : '') + '"></td>';
             }
-            gridHtml += '</div>';
+            gridHtml += '</tr>';
         }
-        gridHtml += '</div>';
+        gridHtml += '</tbody></table>';
         return gridHtml;
     }
 
