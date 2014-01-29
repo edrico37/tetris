@@ -187,7 +187,7 @@ window.tetris = {};
         }
     }
 
-    // private functions
+    // private util functions
     function buildGrid(grid) {
         var gridHtml = '<div class="grid">'
         for (var i = 0; i < grid.length; i++) {
@@ -200,6 +200,13 @@ window.tetris = {};
         }
         gridHtml += '</div>';
         return gridHtml;
+    }
+
+    function getRandomType() {
+        // generates a random tetromino type
+        var types = ['T', 'S', 'Z', 'L', 'J', 'I', 'O'];
+
+        return types[Math.round(Math.random() * 6)];
     }
 
     // matrix singleton
@@ -308,7 +315,7 @@ window.tetris = {};
                 destroy();
                 // TODO: use pubsub for this part
                 MATRIX.render();
-                SCOPE.tetromino = new Tetromino('T');
+                SCOPE.tetromino = new Tetromino(getRandomType());
             }
         };
 
@@ -350,7 +357,7 @@ window.tetris = {};
     // initialization bullshit
     function init() {
         MATRIX.init($('#matrix'), 20, 10); // initialize matrix
-        SCOPE.tetromino = new Tetromino('T'); // our current tetromino
+        SCOPE.tetromino = new Tetromino(getRandomType()); // our current tetromino
         // controls
         $(document).keydown(function(event) {
             var key = event.which;
