@@ -17,6 +17,15 @@ $cell-width: 40px;
         @include spin(90);
     }
 }
+@mixin colorCell($color) {
+    .grid {
+        .cell {
+            &.full {
+                background-color: $color;
+            }
+        }
+    }
+}
 
 // body
 body {
@@ -89,21 +98,28 @@ body {
     }
     // shape-specific overrides
     &.T {
+        @include colorCell(purple);
     }
     &.S {
+        @include colorCell(green);
         @include binarySpin;
     }
     &.Z {
+        @include colorCell(red);
         @include binarySpin;
     }
     &.L {
+        @include colorCell(orange);
     }
     &.J {
+        @include colorCell(blue);
     }
     &.O {
+        @include colorCell(yellow);
         @include sizeCells(2);
     }
     &.I {
+        @include colorCell(cyan);
         @include sizeCells(4);
         @include binarySpin;
     }

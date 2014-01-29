@@ -246,12 +246,12 @@ window.tetris = {};
 
         // private functions
         function render() {
-            $('body').prepend('<div id="tetromino" class="tetromino ' + type + '">' + buildGrid(grid) + '</div>');        
-            $elem = $('#tetromino');
-            $elem.css({
+            $elem = $(document.createElement('div'));
+            $elem.addClass('tetromino ' + type).html(buildGrid(grid)).css({
                 top: (40 * y) + 'px',
                 left: (40 * x) + 'px'
             });
+            $('body').prepend($elem);
         };
         function destroy() {
             $elem.remove();

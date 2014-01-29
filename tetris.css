@@ -46,6 +46,10 @@ body {
     transform: rotate(270deg);
     -ms-transform: rotate(270deg);
     -webkit-transform: rotate(270deg); }
+  .tetromino.T .grid .cell.full {
+    background-color: purple; }
+  .tetromino.S .grid .cell.full {
+    background-color: green; }
   .tetromino.S.spin-2 {
     transform: rotate(0deg);
     -ms-transform: rotate(0deg);
@@ -54,6 +58,8 @@ body {
     transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -webkit-transform: rotate(90deg); }
+  .tetromino.Z .grid .cell.full {
+    background-color: red; }
   .tetromino.Z.spin-2 {
     transform: rotate(0deg);
     -ms-transform: rotate(0deg);
@@ -62,12 +68,20 @@ body {
     transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -webkit-transform: rotate(90deg); }
+  .tetromino.L .grid .cell.full {
+    background-color: orange; }
+  .tetromino.J .grid .cell.full {
+    background-color: blue; }
   .tetromino.O {
     height: 80px;
     width: 80px; }
+    .tetromino.O .grid .cell.full {
+      background-color: yellow; }
   .tetromino.I {
     height: 160px;
     width: 160px; }
+    .tetromino.I .grid .cell.full {
+      background-color: cyan; }
     .tetromino.I.spin-2 {
       transform: rotate(0deg);
       -ms-transform: rotate(0deg);
