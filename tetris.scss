@@ -42,12 +42,8 @@ body {
     .cell {
         float: left;
         @include sizeCells(1);
-        &.full {
-            background-color: black;
-        }
     }
 }
-
 
 // matrix
 #matrix {
@@ -79,13 +75,6 @@ body {
     left: 0px;
     z-index: 1;
     background-color: transparent;
-    .grid {
-        .cell {
-            &.full {
-                background-color: blue;
-            }
-        }
-    }
     @include sizeCells(3);
     &.spin-1 {
         @include spin(90);
@@ -95,6 +84,9 @@ body {
     }
     &.spin-3 {
         @include spin(270);
+    }
+    &.locked {
+        opacity: 0.5;
     }
     // shape-specific overrides
     &.T {

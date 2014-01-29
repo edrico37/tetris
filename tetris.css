@@ -10,8 +10,6 @@ body {
     float: left;
     height: 40px;
     width: 40px; }
-    .grid .cell.full {
-      background-color: black; }
 
 #matrix {
   width: 400px;
@@ -32,8 +30,6 @@ body {
   background-color: transparent;
   height: 120px;
   width: 120px; }
-  .tetromino .grid .cell.full {
-    background-color: blue; }
   .tetromino.spin-1 {
     transform: rotate(90deg);
     -ms-transform: rotate(90deg);
@@ -46,6 +42,8 @@ body {
     transform: rotate(270deg);
     -ms-transform: rotate(270deg);
     -webkit-transform: rotate(270deg); }
+  .tetromino.locked {
+    opacity: 0.5; }
   .tetromino.T .grid .cell.full {
     background-color: purple; }
   .tetromino.S .grid .cell.full {

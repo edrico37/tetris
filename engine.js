@@ -253,9 +253,6 @@ window.tetris = {};
             });
             $('body').prepend($elem);
         };
-        function destroy() {
-            $elem.remove();
-        };
         function checkCollision(xShift, yShift, spinShift) {
             for (var i = 0; i < height; i++) {
                 var tetrominoGrid = TETROMINO_CONFIG[type].grids[(spin + spinShift) % 4], // the new grid config, taking the spin into account
@@ -300,6 +297,7 @@ window.tetris = {};
                     }
                 }
             }
+            $elem.addClass('locked');
         };
 
         // public functions
@@ -312,9 +310,6 @@ window.tetris = {};
                 });
             } else {
                 lock();
-                destroy();
-                // TODO: use pubsub for this part
-                MATRIX.render();
                 SCOPE.tetromino = new Tetromino(getRandomType());
             }
         };
