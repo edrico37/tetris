@@ -1,6 +1,18 @@
 body {
   margin: 0; }
 
+.grid {
+  width: inherit;
+  height: inherit; }
+  .grid .row {
+    height: 40px; }
+  .grid .cell {
+    float: left;
+    height: 40px;
+    width: 40px; }
+    .grid .cell.full {
+      background-color: black; }
+
 #matrix {
   width: 400px;
   height: 800px;
@@ -11,18 +23,8 @@ body {
   border-left-width: 1px;
   border-right-width: 1px;
   border-top-width: 0; }
-  #matrix table {
-    border-collapse: collapse;
-    height: 100%;
-    width: 100%; }
-    #matrix table td {
-      height: 40px;
-      width: 40px;
-      box-sizing: border-box; }
-      #matrix table td.full {
-        background-color: black; }
 
-#tetromino {
+.tetromino {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -30,47 +32,47 @@ body {
   background-color: transparent;
   height: 120px;
   width: 120px; }
-  #tetromino.spin-1 {
+  .tetromino .grid .cell.full {
+    background-color: blue; }
+  .tetromino.spin-1 {
     transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -webkit-transform: rotate(90deg); }
-  #tetromino.spin-2 {
+  .tetromino.spin-2 {
     transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     -webkit-transform: rotate(180deg); }
-  #tetromino.spin-3 {
+  .tetromino.spin-3 {
     transform: rotate(270deg);
     -ms-transform: rotate(270deg);
     -webkit-transform: rotate(270deg); }
-  #tetromino.T {
-    background-image: url("images/t-tetromino.png"); }
-  #tetromino.S.spin-2 {
+  .tetromino.S.spin-2 {
     transform: rotate(0deg);
     -ms-transform: rotate(0deg);
     -webkit-transform: rotate(0deg); }
-  #tetromino.S.spin-3 {
+  .tetromino.S.spin-3 {
     transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -webkit-transform: rotate(90deg); }
-  #tetromino.Z.spin-2 {
+  .tetromino.Z.spin-2 {
     transform: rotate(0deg);
     -ms-transform: rotate(0deg);
     -webkit-transform: rotate(0deg); }
-  #tetromino.Z.spin-3 {
+  .tetromino.Z.spin-3 {
     transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -webkit-transform: rotate(90deg); }
-  #tetromino.O {
+  .tetromino.O {
     height: 80px;
     width: 80px; }
-  #tetromino.I {
+  .tetromino.I {
     height: 160px;
     width: 160px; }
-    #tetromino.I.spin-2 {
+    .tetromino.I.spin-2 {
       transform: rotate(0deg);
       -ms-transform: rotate(0deg);
       -webkit-transform: rotate(0deg); }
-    #tetromino.I.spin-3 {
+    .tetromino.I.spin-3 {
       transform: rotate(90deg);
       -ms-transform: rotate(90deg);
       -webkit-transform: rotate(90deg); }

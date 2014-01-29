@@ -1,6 +1,6 @@
 window.tetris = {};
 (function(SCOPE) {
-    // constants and such
+    // private properties (constants and such)
     var BLOCK_SIZE = 40;
     var TETROMINO_CONFIG = {
         T: {
@@ -187,29 +187,25 @@ window.tetris = {};
         }
     }
 
+    // private functions
+    function buildGrid(grid) {
+        var gridHtml = '<div class="grid">'
+        for (var i = 0; i < grid.length; i++) {
+            gridHtml += '<div class="row">';
+            var gridRow = grid[i];
+            for (var k = 0; k < gridRow.length; k++) {
+                gridHtml += '<div class="cell' + (gridRow[k] ? ' full' : '') + '"></div>';
+            }
+            gridHtml += '</div>';
+        }
+        gridHtml += '</div>';
+        return gridHtml;
+    }
+
     // matrix singleton
     var MATRIX = {
         render: function() {
-            // local helper functions
-            function buildMatrixCell(matrixCell) {
-                return '<td' + (matrixCell ? ' class="full"' : '') + '></td>';
-            }
-            function buildMatrixRow(matrixRow) {
-                var matrixRowHtml = '<tr>';
-                for (var i = 0; i < matrixRow.length; i++) {
-                    matrixRowHtml += buildMatrixCell(matrixRow[i]);
-                }
-                matrixRowHtml += '</tr>';
-                return matrixRowHtml;
-            }
-
-            // create HTML and fill it
-            var matrixHtml = '<tbody>';
-            for (var i = 0; i < this.grid.length; i++) {
-                matrixHtml += buildMatrixRow(this.grid[i]);
-            }
-            matrixHtml += '</tbody>';
-            this.$elem.children('table').html(matrixHtml);
+            this.$elem.html(buildGrid(this.grid));
         },
         init: function($elem, height, width) {
             this.$elem = $elem;
@@ -218,11 +214,11 @@ window.tetris = {};
             this.grid = (function() {
                 var grid = [];
                 for (var i = 0; i < height; i++) {
-                    var matrixRow = [];
+                    var gridRow = [];
                     for (var k = 0; k < width; k++) {
-                        matrixRow.push(0);    
+                        gridRow.push(0);    
                     }
-                    grid.push(matrixRow);
+                    grid.push(gridRow);
                 }
                 return grid;
             })();
@@ -243,8 +239,7 @@ window.tetris = {};
 
         // private functions
         function render() {
-            // TODO: decouple somehow
-            MATRIX.$elem.prepend('<div id="tetromino" class="' + type + '"></div>');        
+            $('body').prepend('<div id="tetromino" class="tetromino ' + type + '">' + buildGrid(grid) + '</div>');        
             $elem = $('#tetromino');
             $elem.css({
                 top: (40 * y) + 'px',
